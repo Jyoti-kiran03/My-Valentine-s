@@ -1,64 +1,65 @@
-const startBtn = document.getElementById("startBtn");
-const intro = document.getElementById("intro");
-const main = document.getElementById("main");
-const bgm = document.getElementById("bgm");
+document.addEventListener("DOMContentLoaded", () => {
 
-startBtn.onclick = () => {
-  intro.classList.add("hidden");
-  main.classList.remove("hidden");
+  const startBtn = document.getElementById("startBtn");
+  const intro = document.getElementById("intro");
+  const main = document.getElementById("main");
+  const bgm = document.getElementById("bgm");
+  const typeBox = document.getElementById("typewriter");
+  const openBtn = document.getElementById("openHeartBtn");
 
-  bgm.play().catch(()=>{});
-  startTyping();
-  showSlides();
-};
+  let i = 0;
+  const text = "Mummy & Papa, your love is my strength, my happiness and my forever 💖";
 
-/* TYPEWRITER */
-const text = "Mummy & Papa, your love is my strength, my happiness and my forever 💖";
-let i = 0;
+  startBtn.addEventListener("click", () => {
+    intro.classList.add("hidden");
+    main.classList.remove("hidden");
 
-function startTyping() {
-  if (i < text.length) {
-    document.getElementById("typewriter").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(startTyping, 60);
-  }
-}
+    bgm.volume = 0.6;
+    bgm.play().catch(()=>{});
 
-/* SLIDESHOW */
-let slideIndex = 0;
+    typeWriter();
+    showSlides();
+  });
 
-function showSlides() {
-  let slides = document.getElementsByClassName("slides");
-
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+  function typeWriter() {
+    if (i < text.length) {
+      typeBox.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, 60);
+    }
   }
 
-  slideIndex++;
-  if (slideIndex > slides.length) slideIndex = 1;
+  let slideIndex = 0;
 
-  slides[slideIndex - 1].style.display = "block";
+  function showSlides() {
+    const slides = document.getElementsByClassName("slides");
+    for (let s of slides) s.style.display = "none";
 
-  setTimeout(showSlides, 2500);
-}
+    slideIndex++;
+    if (slideIndex > slides.length) slideIndex = 1;
 
-/* SURPRISE */
-function showSurprise() {
-  const box = document.getElementById("surprise");
-  box.classList.remove("hidden");
+    slides[slideIndex - 1].style.display = "block";
+    setTimeout(showSlides, 2500);
+  }
 
-  const yesBtn = document.getElementById("yesBtn");
-  const noBtn = document.getElementById("noBtn");
+  openBtn.addEventListener("click", () => {
+    const box = document.getElementById("surprise");
+    box.classList.remove("hidden");
 
-  noBtn.onmouseenter = () => {
-    const x = Math.random() * (window.innerWidth - 120);
-    const y = Math.random() * (window.innerHeight - 60);
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-    noBtn.innerText = "You've only one option 😝";
-  };
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
 
-  yesBtn.onclick = () => {
-    window.location.href = "message.html";
-  };
-}
+    noBtn.addEventListener("mouseenter", () => {
+      const x = Math.random() * (window.innerWidth - 150);
+      const y = Math.random() * (window.innerHeight - 80);
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+      noBtn.innerText = "Only YES allowed 😝";
+    });
+
+    yesBtn.onclick = () => {
+      window.location.href = "message.html";
+    };
+  });
+
+});
