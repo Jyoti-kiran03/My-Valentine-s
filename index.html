@@ -1,30 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Ultra Cinematic Love 💖</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Lovely Parents ❤️</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="overlay"></div>
-
-<div class="container">
-  <h1 class="title">My Heart Is Open For You 💖</h1>
-  <p class="subtitle">Will you accept my heart?</p>
-
-  <div class="buttons">
-    <button id="yesBtn">YES 💘</button>
-    <button id="noBtn">NO 😝</button>
-  </div>
-</div>
-
-<div class="petals"></div>
-
-<audio id="bgMusic" loop>
+<audio id="bgm" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
+
+<!-- CINEMATIC INTRO -->
+<div class="cinematic-intro" id="intro">
+  <h1 class="cinema-title">💖 A Love Story 💖</h1>
+  <p>Dedicated to the most beautiful parents in the world</p>
+  <button id="startBtn">▶ Start</button>
+</div>
+
+<div class="hearts"></div>
+
+<!-- MAIN CONTENT -->
+<div class="container hidden" id="main">
+
+  <h1>💖 Happy Valentine’s Day 💖</h1>
+  <h2>To My Loving Parents</h2>
+
+  <p class="intro" id="typewriter"></p>
+
+  <div class="slideshow">
+    <img class="slides" src="img1.jpg">
+    <img class="slides" src="img2.jpg">
+    <img class="slides" src="img3.jpg">
+  </div>
+
+  <button onclick="showSurprise()">💖 Open My Heart</button>
+
+  <div id="surprise" class="hidden">
+    <h2>Will you open my heart? 💖</h2>
+    <div class="btn-box">
+      <button id="yesBtn">Yes 💕</button>
+      <button id="noBtn">No 💔</button>
+    </div>
+  </div>
+
+</div>
 
 <script src="script.js"></script>
 </body>
