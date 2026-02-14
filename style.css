@@ -74,8 +74,30 @@ body {
   font-size: 22px;
   filter: drop-shadow(0 0 5px pink);
 }
+.fade-out {
+  animation: fadeOut 1.2s forwards;
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: scale(1.05); }
+}
+
+/* Cinematic page transition */
+.cinema-transition {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #ff008c, #000);
+  z-index: 99999;
+  animation: zoomFade 1.5s forwards;
+}
+
+@keyframes zoomFade {
+  from { opacity: 0; transform: scale(1.3); }
+  to { opacity: 1; transform: scale(1); }
+}
 
 @keyframes fall {
   from { transform: translateY(0); opacity: 1; }
   to { transform: translateY(110vh); opacity: 0; }
 }
+
