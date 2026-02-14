@@ -3,19 +3,19 @@ const intro = document.getElementById("intro");
 const main = document.getElementById("main");
 const bgm = document.getElementById("bgm");
 
-/* START BUTTON */
+/* START */
 startBtn.addEventListener("click", () => {
   bgm.volume = 0.6;
   bgm.play().catch(()=>{});
 
-  intro.style.opacity = "0";
+  intro.classList.add("fade-out");
 
   setTimeout(() => {
     intro.style.display = "none";
     main.classList.remove("hidden");
     startTyping();
     startSlides();
-    createHearts();
+    heartEngine();
   }, 1200);
 });
 
@@ -27,7 +27,7 @@ function startTyping() {
   if (index < text.length) {
     document.getElementById("typewriter").innerHTML += text.charAt(index);
     index++;
-    setTimeout(startTyping, 60);
+    setTimeout(startTyping, 55);
   }
 }
 
@@ -40,45 +40,60 @@ function startSlides() {
 
   slideIndex++;
   if (slideIndex > slides.length) slideIndex = 1;
-
   slides[slideIndex - 1].style.display = "block";
-  setTimeout(startSlides, 2500);
+
+  setTimeout(startSlides, 2600);
 }
 
-/* BACKGROUND HEARTS */
-function createHearts() {
-  setInterval(() => {
-    let heart = document.createElement("span");
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 20 + 15 + "px";
-    heart.style.animationDuration = Math.random() * 5 + 5 + "s";
+/* ULTRA SMOOTH HEART ENGINE */
+function heartEngine() {
+  const container = document.querySelector(".hearts");
 
-    document.querySelector(".hearts").appendChild(heart);
+  setInterval(() => {
+    const heart = document.createElement("span");
+    heart.innerHTML = "💖";
+
+    const size = Math.random() * 18 + 16;
+    heart.style.fontSize = size + "px";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = Math.random() * 4 + 6 + "s";
+
+    container.appendChild(heart);
 
     setTimeout(() => heart.remove(), 10000);
-  }, 250);
+  }, 450); // optimized rate
 }
 
-/* SHOW SURPRISE */
+/* SURPRISE LOGIC */
 function showSurprise() {
-  document.getElementById("surprise").classList.remove("hidden");
-
+  const surprise = document.getElementById("surprise");
   const yesBtn = document.getElementById("yesBtn");
   const noBtn = document.getElementById("noBtn");
 
-  /* FLOATING NO BUTTON */
+  surprise.classList.remove("hidden");
+
+  /* FLOATING NO */
   noBtn.addEventListener("mouseenter", () => {
-    const x = Math.random() * (window.innerWidth - 120);
-    const y = Math.random() * (window.innerHeight - 60);
-    noBtn.style.position = "absolute";
+    const x = Math.random() * (window.innerWidth - 140);
+    const y = Math.random() * (window.innerHeight - 80);
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
     noBtn.innerText = "You've only one option 😝";
   });
 
-  /* YES CLICK */
+  /* YES */
   yesBtn.addEventListener("click", () => {
-    window.location.href = "message.html";
+    cinematicTransition();
   });
+}
+
+/* CINEMATIC TRANSITION */
+function cinematicTransition() {
+  const overlay = document.createElement("div");
+  overlay.className = "cinema-transition";
+  document.body.appendChild(overlay);
+
+  setTimeout(() => {
+    window.location.href = "message.html";
+  }, 1500);
 }
