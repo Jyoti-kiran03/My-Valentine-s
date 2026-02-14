@@ -2,98 +2,62 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
+  font-family:'Poppins', sans-serif;
 }
 
 body{
   height:100vh;
-  background:radial-gradient(circle at top, #140016, #000);
+  background: radial-gradient(circle at top, #140016, #000);
   overflow:hidden;
-  color:#fff;
-  text-align:center;
-}
-
-/* INTRO & MAIN */
-.intro, .main{
-  position:fixed;
-  inset:0;
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
+  color:white;
 }
 
-.hidden{display:none}
+/* Center Box */
+.container{
+  text-align:center;
+  z-index:5;
+}
 
-/* TEXT */
 h1{
-  font-size:48px;
-  color:#ff2fa6;
-  text-shadow:0 0 25px #ff2fa6;
-}
-
-h2{
-  margin-top:10px;
-  opacity:.9;
+  font-size:3rem;
+  text-shadow:0 0 20px hotpink;
 }
 
 p{
-  margin:15px auto;
-  max-width:600px;
-  font-size:20px;
-  opacity:.85;
+  margin:15px 0 25px;
+  opacity:0.8;
 }
 
-/* BUTTONS */
 button{
-  padding:12px 30px;
-  margin-top:20px;
-  border-radius:30px;
+  padding:14px 40px;
   border:none;
+  border-radius:30px;
   background:linear-gradient(45deg,#ff008c,#ff6ad5);
-  color:#fff;
+  color:white;
   font-size:18px;
   cursor:pointer;
   box-shadow:0 0 20px #ff2fa6;
-  transition:.3s;
+  transition:0.3s;
 }
 
-button:hover{transform:scale(1.1)}
-
-/* SLIDESHOW */
-.slideshow{
-  width:260px;
-  height:260px;
-  border-radius:50%;
-  overflow:hidden;
-  border:5px solid white;
-  box-shadow:0 0 25px rgba(255,255,255,.7);
-  margin:20px;
+button:hover{
+  transform:scale(1.1);
 }
 
-.slides{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:none;
-}
-
-/* FALLING HEARTS */
+/* Falling Hearts */
 .hearts span{
   position:fixed;
-  top:-10px;
-  animation: fall linear infinite;
+  top:-20px;
   font-size:22px;
+  animation: fall linear infinite;
   filter: drop-shadow(0 0 6px hotpink);
+  pointer-events:none;
 }
 
 @keyframes fall{
-  0%{transform:translateY(0) rotate(0);opacity:1}
+  0%{transform:translateY(0) rotate(0deg);opacity:1}
   100%{transform:translateY(110vh) rotate(360deg);opacity:0}
-}
-
-/* SURPRISE */
-#noBtn{
-  position:absolute;
-  background:#333;
 }
