@@ -3,97 +3,62 @@ const intro = document.getElementById("intro");
 const main = document.getElementById("main");
 const bgm = document.getElementById("bgm");
 
-/* START */
-startBtn.addEventListener("click", () => {
-  bgm.volume = 0.6;
+startBtn.onclick = () => {
+  intro.classList.add("hidden");
+  main.classList.remove("hidden");
+
   bgm.play().catch(()=>{});
-
-  intro.classList.add("fade-out");
-
-  setTimeout(() => {
-    intro.style.display = "none";
-    main.classList.remove("hidden");
-    startTyping();
-    startSlides();
-    heartEngine();
-  }, 1200);
-});
+  startTyping();
+  showSlides();
+};
 
 /* TYPEWRITER */
-const text = "Mummy & Papa, your love is my strength, my happiness, and my entire world. This small gift carries big emotions just for you 💖";
-let index = 0;
+const text = "Mummy & Papa, your love is my strength, my happiness and my forever 💖";
+let i = 0;
 
 function startTyping() {
-  if (index < text.length) {
-    document.getElementById("typewriter").innerHTML += text.charAt(index);
-    index++;
-    setTimeout(startTyping, 55);
+  if (i < text.length) {
+    document.getElementById("typewriter").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(startTyping, 60);
   }
 }
 
 /* SLIDESHOW */
 let slideIndex = 0;
 
-function startSlides() {
-  const slides = document.querySelectorAll(".slides");
-  slides.forEach(slide => slide.style.display = "none");
+function showSlides() {
+  let slides = document.getElementsByClassName("slides");
+
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
 
   slideIndex++;
   if (slideIndex > slides.length) slideIndex = 1;
+
   slides[slideIndex - 1].style.display = "block";
 
-  setTimeout(startSlides, 2600);
+  setTimeout(showSlides, 2500);
 }
 
-/* ULTRA SMOOTH HEART ENGINE */
-function heartEngine() {
-  const container = document.querySelector(".hearts");
-
-  setInterval(() => {
-    const heart = document.createElement("span");
-    heart.innerHTML = "💖";
-
-    const size = Math.random() * 18 + 16;
-    heart.style.fontSize = size + "px";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = Math.random() * 4 + 6 + "s";
-
-    container.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 10000);
-  }, 450); // optimized rate
-}
-
-/* SURPRISE LOGIC */
+/* SURPRISE */
 function showSurprise() {
-  const surprise = document.getElementById("surprise");
+  const box = document.getElementById("surprise");
+  box.classList.remove("hidden");
+
   const yesBtn = document.getElementById("yesBtn");
   const noBtn = document.getElementById("noBtn");
 
-  surprise.classList.remove("hidden");
-
-  /* FLOATING NO */
-  noBtn.addEventListener("mouseenter", () => {
-    const x = Math.random() * (window.innerWidth - 140);
-    const y = Math.random() * (window.innerHeight - 80);
+  noBtn.onmouseenter = () => {
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
     noBtn.style.left = x + "px";
     noBtn.style.top = y + "px";
     noBtn.innerText = "You've only one option 😝";
-  });
+  };
 
-  /* YES */
-  yesBtn.addEventListener("click", () => {
-    cinematicTransition();
-  });
-}
-
-/* CINEMATIC TRANSITION */
-function cinematicTransition() {
-  const overlay = document.createElement("div");
-  overlay.className = "cinema-transition";
-  document.body.appendChild(overlay);
-
-  setTimeout(() => {
+  yesBtn.onclick = () => {
     window.location.href = "message.html";
-  }, 1500);
+  };
 }
