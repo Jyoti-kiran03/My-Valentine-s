@@ -1,18 +1,19 @@
-* {
+*{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family:'Poppins',sans-serif;
 }
 
-body {
-  background: radial-gradient(circle,#ffdee9,#b5fffc);
+body{
+  background:black;
   height:100vh;
   overflow:hidden;
   text-align:center;
+  color:white;
 }
 
-.intro, .main {
+.intro,.main{
   position:fixed;
   inset:0;
   display:flex;
@@ -21,42 +22,38 @@ body {
   align-items:center;
 }
 
-.hidden {
-  display:none;
+.hidden{ display:none; }
+
+h1{
+  font-size:46px;
+  color:#ff4d88;
 }
 
-h1 {
-  font-size:48px;
-  color:#ff2f75;
-}
-
-h2 {
+h2{
   margin:10px 0;
 }
 
-p {
+p{
   font-size:20px;
   max-width:600px;
   margin:15px auto;
 }
 
-button {
+button{
   padding:12px 30px;
   margin-top:20px;
   border:none;
   border-radius:30px;
   background:linear-gradient(45deg,#ff416c,#ff4b2b);
-  color:#fff;
+  color:white;
   font-size:18px;
   cursor:pointer;
   transition:.3s;
 }
 
-button:hover {
-  transform:scale(1.08);
-}
+button:hover{ transform:scale(1.1); }
 
-.slideshow {
+.slideshow{
   width:260px;
   height:260px;
   border-radius:50%;
@@ -65,18 +62,24 @@ button:hover {
   margin:20px;
 }
 
-.slides {
+.slides{
   width:100%;
   height:100%;
   object-fit:cover;
   display:none;
 }
 
-#surprise {
-  margin-top:20px;
+#noBtn{
+  position:absolute;
+  background:#222;
 }
 
-#noBtn {
-  position:absolute;
-  background:#333;
+.petals span{
+  position:fixed;
+  top:-10px;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{ transform:translateY(110vh); opacity:0; }
 }
